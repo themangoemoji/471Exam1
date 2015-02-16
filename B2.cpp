@@ -24,8 +24,8 @@ AudioProcessDoc::OnProcessDelay()
         queue[wrloc] = audio[0];
         queue[wrloc+1] = audio[1];
 
-        int flange = 0.006 + sin(0.25 * 2 * PI * t) * 0.004;
-        int rdloc = (wrloc + QUEUESIZE - flange) % QUEUESIZE;
+        int chorus = 0.025 + sin(0.25 * 2 * PI * t) * 0.005 seconds;
+        int rdloc = (wrloc + QUEUESIZE - chorus) % QUEUESIZE;
 
         audio[0] = audio[0]/2 + queue[rdloc++]/2;
         audio[1] = audio[1]/2 + queue[rdloc]/2;

@@ -25,10 +25,12 @@ AudioProcessDoc::OnProcessDelay()
         queue[wrloc+1] = audio[1];
 
         int flange = 0.006 + sin(0.25 * 2 * PI * t) * 0.004;
-        int rdloc = (wrloc + QUEUESIZE - flange) % QUEUESIZE;
 
-        audio[0] = audio[0]/2 + queue[rdloc++]/2;
-        audio[1] = audio[1]/2 + queue[rdloc]/2;
+        double diff = 3.14 * sin(time * 2 * M_PI * freq2); 
+        short sample = short(amplitude *  sin(time * 2 * M_PI * freq1 + diff));
+
+        audio[0] = sample;
+        audio[1] = sample;
 
         ProcessWriteFrame(audio);
 
